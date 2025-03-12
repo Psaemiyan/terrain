@@ -13,7 +13,6 @@ export default function Scene() {
         if (planeGeometryRef.current) {
             planeGeometryRef.current.rotateX(-Math.PI / 2);
             planeGeometryRef.current.rotateY(-Math.PI / 2);
-
         }
     }, []);
 

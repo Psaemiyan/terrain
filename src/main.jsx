@@ -5,6 +5,7 @@ import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
     <Canvas camera={{ position: [0, 1, 10], fov: 70 }} shadows>
+        <color attach="background" args={["lightblue"]} />
         <directionalLight position={[-2, 5, 2]} castShadow={true}/>
         <ambientLight intensity={1.5} />
       <App />

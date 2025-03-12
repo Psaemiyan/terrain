@@ -10,6 +10,13 @@ varying float vUpDot;
 
 #include ../simplexNoise2d.glsl
 
+vec3 getGrassColor(vec2 position) {
+    float noise = simplexNoise2d(position * 0.15); 
+    noise = smoothstep(0.4, 0.6, noise); 
+    vec3 grassBaseColor = mix(vec3(0.3, 0.5, 0.2), vec3(0.2, 0.35, 0.2), noise); 
+    return grassBaseColor;
+}
+
 void main()
 {
     // Base color
@@ -24,8 +31,11 @@ void main()
     color = mix(color, uColorSand, sandMix);
 
     // Grass transition
-    float grassMix = step(-0.06, vPosition.y);
-    color = mix(color, uColorGrass, grassMix);
+    // float grassMix = step(-0.06, vPosition.y);
+    // color = mix(color, uColorGrass, grassMix);
+        float grassMix = step(-0.06, vPosition.y);
+    vec3 grassColor = getGrassColor(vPosition.xz); 
+    color = mix(color, grassColor, grassMix);
 
     // Rock transition
     float rockMix = vUpDot;
