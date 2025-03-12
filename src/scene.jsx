@@ -30,7 +30,7 @@ export default function Scene() {
                     uWarpFrequency: { value: 5.0 },
                     uWarpStrength: { value: 0.2 },
                     uPositionFrequency: { value: 0.2 }, 
-                    uStrength: { value: 2.0 }, 
+                    uStrength: { value: 3.5 }, 
 
                     // Fragment Shader Uniforms 
                     uColorWaterDeep: { value: new THREE.Color('#002b3d') }, 
