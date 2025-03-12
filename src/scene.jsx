@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { useEffect } from 'react';
-import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import terrainVertexShader from './shaders/terrain/vertex.glsl';
 import terrainFragmentShader from './shaders/terrain/fragment.glsl';
