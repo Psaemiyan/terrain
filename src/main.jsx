@@ -7,7 +7,7 @@ import './app.css'
 
 
 createRoot(document.getElementById('root')).render(
-    <Canvas camera={{ position: [0, 1, 10], fov: 70 }} shadows>
+    <Canvas camera={{ position: [0, 2, 20], fov: 70 }} shadows>
         <OrbitControls makeDefault />
         <color attach="background" args={["lightblue"]} />
         <directionalLight position={[-2, 5, 2]} castShadow={true}/>

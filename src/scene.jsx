@@ -18,7 +18,7 @@ export default function Scene() {
 
     return (
         <mesh position={[0, -0.1, 0]} castShadow receiveShadow>
-            <planeGeometry ref={planeGeometryRef} args={[20, 20, 500, 500]} />
+            <planeGeometry ref={planeGeometryRef} args={[40, 40, 500, 500]} />
             <shaderMaterial
                 ref={materialRef}
                 vertexShader={terrainVertexShader}
