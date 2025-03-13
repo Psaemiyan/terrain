@@ -26,9 +26,9 @@ export default function Scene() {
                 uniforms={{
                     // Vertex Shader Uniforms
                     uWarpFrequency: { value: 5.0 },
-                    uWarpStrength: { value: 0.2 },
+                    uWarpStrength: { value: 0.5 },
                     uPositionFrequency: { value: 0.2 }, 
-                    uStrength: { value: 3.5 }, 
+                    uStrength: { value: 2.0 }, 
 
                     // Fragment Shader Uniforms 
                     uColorWaterDeep: { value: new THREE.Color('#002b3d') }, 

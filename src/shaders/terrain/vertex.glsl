@@ -12,15 +12,15 @@ varying float vUpDot;
 float getElevation(vec2 position)
 {
     vec2 warpedPosition = position;
-    warpedPosition += simplexNoise2d(warpedPosition * uPositionFrequency * 1.0) * 0.05; 
+    warpedPosition += simplexNoise2d(warpedPosition * uPositionFrequency * uWarpFrequency) * uWarpStrength;
     
     float elevation = 0.0;
-    elevation += simplexNoise2d(warpedPosition * uPositionFrequency) * 0.25;  
-    elevation += simplexNoise2d(warpedPosition * uPositionFrequency * 2.0) * 0.1;  
-    elevation += simplexNoise2d(warpedPosition * uPositionFrequency * 4.0) * 0.05; 
+    elevation += simplexNoise2d(warpedPosition * uPositionFrequency      ) / 2.0;
+    elevation += simplexNoise2d(warpedPosition * uPositionFrequency * 2.0) / 4.0;
+    elevation += simplexNoise2d(warpedPosition * uPositionFrequency * 4.0) / 8.0;
 
     float elevationSign = sign(elevation);
-    elevation = pow(abs(elevation), 1.5) * elevationSign; 
+    elevation = pow(abs(elevation), 2.0) * elevationSign; 
     elevation *= uStrength;
 
     return elevation;
