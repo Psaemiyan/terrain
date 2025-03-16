@@ -12,7 +12,7 @@ varying float vUpDot;
 #include ../simplexNoise2d.glsl
 
 vec3 getGrassColor(vec2 position) {
-    float speed = 0.05;  // Adjust this for faster or slower movement
+    float speed = 0.05;  
     float noise = simplexNoise2d(position * 0.15 + vec2(uTime * speed, 0.0));  
     noise = smoothstep(0.4, 0.6, noise); 
     vec3 grassBaseColor = mix(vec3(0.3, 0.5, 0.2), vec3(0.2, 0.35, 0.2), noise); 
@@ -29,7 +29,7 @@ void main()
     color = mix(uColorWaterDeep, uColorWaterSurface, surfaceWaterMix);
 
     // Sand transition
-  float sandMix = step(- 0.1, vPosition.y);
+    float sandMix = step(- 0.1, vPosition.y);
     color = mix(color, uColorSand, sandMix);
 
     // Grass transition
@@ -44,7 +44,7 @@ void main()
     color = mix(color, uColorRock, rockMix);
 
     // Snow transition
-    float snowThreshold = 0.45;
+    float snowThreshold = 0.55;
     snowThreshold += simplexNoise2d(vPosition.xz * 15.0) * 0.1;
     float snowMix = step(snowThreshold, vPosition.y);
     color = mix(color, uColorSnow, snowMix);

@@ -29,7 +29,7 @@ export default function Scene() {
                 fragmentShader={terrainFragmentShader}
                 uniforms={{
                     // Vertex Shader Uniforms
-                    uWarpFrequency: { value: 5.0 },
+                    uWarpFrequency: { value: 4.0 },
                     uWarpStrength: { value: 0.5 },
                     uPositionFrequency: { value: 0.2 }, 
                     uStrength: { value: 2.0 }, 
