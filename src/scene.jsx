@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import { useEffect } from 'react';
+import { useRef, useEffect } from 'react';
+import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import terrainVertexShader from './shaders/terrain/vertex.glsl';
 import terrainFragmentShader from './shaders/terrain/fragment.glsl';
@@ -16,6 +16,10 @@ export default function Scene() {
     }, []);
 
 
+    useFrame(({ clock }) => {
+        materialRef.current.uniforms.uTime.value = clock.elapsedTime;
+      });
+
     return (
         <mesh position={[0, -0.1, 0]} castShadow receiveShadow>
             <planeGeometry ref={planeGeometryRef} args={[40, 40, 500, 500]} />
@@ -31,6 +35,7 @@ export default function Scene() {
                     uStrength: { value: 2.0 }, 
 
                     // Fragment Shader Uniforms 
+                    uTime: {value: 0},
                     uColorWaterDeep: { value: new THREE.Color('#002b3d') }, 
                     uColorWaterSurface: { value: new THREE.Color('#4a7bb6') }, 
                     uColorSand: { value: new THREE.Color('#b9c1c7') },  
