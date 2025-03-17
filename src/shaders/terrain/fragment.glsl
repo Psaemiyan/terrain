@@ -19,13 +19,28 @@ vec3 getGrassColor(vec2 position) {
     return grassBaseColor;
 }
 
+float getRipple(vec2 position, float time) {
+    float speed = 0.5;
+    float frequencyX = 0.2;
+    float frequencyZ = 0.25; 
+    float amplitude = 0.05; 
+    float rippleX = sin(position.x * frequencyX + time * speed) * amplitude;
+    float rippleZ = sin(position.y * frequencyZ + time * speed) * amplitude;  
+    return rippleX + rippleZ;
+}
+
+
+
 void main()
 {
     // Base color
     vec3 color = vec3(1.0);
 
     // Water
-    float surfaceWaterMix = smoothstep(- 1.0, - 0.1, vPosition.y);
+    float rippleEffect = getRipple(vPosition.xz, uTime);
+    vec3 distortedPosition = vPosition;
+    distortedPosition.y += rippleEffect;
+    float surfaceWaterMix = smoothstep(- 1.0, - 0.1, distortedPosition.y);
     color = mix(uColorWaterDeep, uColorWaterSurface, surfaceWaterMix);
 
     // Sand transition
@@ -33,9 +48,10 @@ void main()
     color = mix(color, uColorSand, sandMix);
 
     // Grass transition
-    float grassMix = step(-0.06, vPosition.y);
+    float grassMix = step(-0.02, vPosition.y);
     vec3 grassColor = getGrassColor(vPosition.xz); 
     color = mix(color, grassColor, grassMix);
+
 
     // Rock transition
     float rockMix = vUpDot;
@@ -43,8 +59,9 @@ void main()
     rockMix *= step(- 0.06, vPosition.y);
     color = mix(color, uColorRock, rockMix);
 
+
     // Snow transition
-    float snowThreshold = 0.55;
+    float snowThreshold = 0.65;
     snowThreshold += simplexNoise2d(vPosition.xz * 15.0) * 0.1;
     float snowMix = step(snowThreshold, vPosition.y);
     color = mix(color, uColorSnow, snowMix);
@@ -52,3 +69,4 @@ void main()
     // Final output color
     gl_FragColor = vec4(color, 1.0);
 }
+

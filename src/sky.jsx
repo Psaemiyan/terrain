@@ -3,13 +3,13 @@ import { useState, useEffect, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 
 export default function Sky() {
-  const cloudCount = 7;
+  const cloudCount = 9;
   const [clouds, setClouds] = useState([]);
 
   useEffect(() => {
     const newClouds = Array.from({ length: cloudCount }, () => ({
       initialX: Math.random() * 40 - 20,
-      y: Math.random() * 8 + 14,
+      y: Math.random() * 8 + 13,
       z: Math.random() * 30 - 20,
       speed: Math.random() * 0.5 + 0.2,
     }));

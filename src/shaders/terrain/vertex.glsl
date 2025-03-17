@@ -1,3 +1,4 @@
+uniform float uTime;
 uniform float uPositionFrequency;
 uniform float uStrength;
 uniform float uWarpFrequency;
@@ -8,9 +9,7 @@ varying float vUpDot;
 
 #include ../simplexNoise2d.glsl
 
-
-float getElevation(vec2 position)
-{
+float getElevation(vec2 position) {
     vec2 warpedPosition = position;
     warpedPosition += simplexNoise2d(warpedPosition * uPositionFrequency * uWarpFrequency) * uWarpStrength;
     
@@ -26,32 +25,31 @@ float getElevation(vec2 position)
     return elevation;
 }
 
-
-
-
-void main()
-{
+void main() {
     vec3 modifiedPosition = position;
 
-    // Neighbor positions
-    float shift = 0.01;
-    vec3 positionA = modifiedPosition + vec3(shift, 0.0, 0.0);
-    vec3 positionB = modifiedPosition + vec3(0.0, 0.0, -shift);
-
-    // Elevation
+    // Compute Elevation for Main Position
     float elevation = getElevation(modifiedPosition.xz);
     modifiedPosition.y += elevation;
+
+    // Neighbor Positions for Normal Calculation
+    float shift = 0.01;
+    vec3 positionA = position + vec3(shift, 0.0, 0.0);
+    vec3 positionB = position + vec3(0.0, 0.0, -shift);
+
+    // Ensure Consistent Elevation Calculation
     positionA.y += getElevation(positionA.xz);
     positionB.y += getElevation(positionB.xz);
-    
-    // Compute normal
+
+    // Compute Normal Correctly
     vec3 toA = normalize(positionA - modifiedPosition);
     vec3 toB = normalize(positionB - modifiedPosition);
     vec3 normal = normalize(cross(toA, toB));
 
-    // Varyings
+    // Set Varyings
     vPosition = modifiedPosition;
     vUpDot = dot(normal, vec3(0.0, 1.0, 0.0));
 
+    // Final Position
     gl_Position = projectionMatrix * modelViewMatrix * vec4(modifiedPosition, 1.0);
 }

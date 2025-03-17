@@ -29,17 +29,17 @@ export default function Scene() {
                 fragmentShader={terrainFragmentShader}
                 uniforms={{
                     // Vertex Shader Uniforms
-                    uWarpFrequency: { value: 4.0 },
-                    uWarpStrength: { value: 0.5 },
-                    uPositionFrequency: { value: 0.2 }, 
-                    uStrength: { value: 2.0 }, 
+                    uWarpFrequency: { value: 5.0 },
+                    uWarpStrength: { value: 0.4 },
+                    uPositionFrequency: { value: 0.15 }, 
+                    uStrength: { value: 2.5 }, 
 
                     // Fragment Shader Uniforms 
                     uTime: {value: 0},
                     uColorWaterDeep: { value: new THREE.Color('#002b3d') }, 
                     uColorWaterSurface: { value: new THREE.Color('#4a7bb6') }, 
                     uColorSand: { value: new THREE.Color('#b9c1c7') },  
-                    uColorGrass: { value: new THREE.Color('#2f5d2a') }, 
+                    uColorGrass: { value: new THREE.Color('#85d534') }, 
                     uColorRock: { value: new THREE.Color('#454148') }, 
                     uColorSnow: { value: new THREE.Color('#b0c4de') }, 
                 }}
