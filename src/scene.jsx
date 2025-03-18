@@ -30,9 +30,9 @@ export default function Scene() {
                 uniforms={{
                     // Vertex Shader Uniforms
                     uWarpFrequency: { value: 5.0 },
-                    uWarpStrength: { value: 0.4 },
-                    uPositionFrequency: { value: 0.15 }, 
-                    uStrength: { value: 2.5 }, 
+                    uWarpStrength: { value: 0.5 },
+                    uPositionFrequency: { value: 0.2 }, 
+                    uStrength: { value: 2.0 }, 
 
                     // Fragment Shader Uniforms 
                     uTime: {value: 0},
@@ -40,7 +40,7 @@ export default function Scene() {
                     uColorWaterSurface: { value: new THREE.Color('#4a7bb6') }, 
                     uColorSand: { value: new THREE.Color('#b9c1c7') },  
                     uColorGrass: { value: new THREE.Color('#85d534') }, 
-                    uColorRock: { value: new THREE.Color('#454148') }, 
+                    uColorRock: { value: new THREE.Color('#7f8386') }, 
                     uColorSnow: { value: new THREE.Color('#b0c4de') }, 
                 }}
             />
