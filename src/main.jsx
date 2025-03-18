@@ -12,7 +12,6 @@ function App() {
 
     const handleToggle = () => {
         setIsDay((prev) => !prev);
-        console.log("Toggled to:", !isDay ? 'Day' : 'Night'); // Log the current state of the toggle
     };
 
     return (
@@ -21,7 +20,7 @@ function App() {
 
             <Canvas camera={{ position: [0, 2, 20], fov: 70 }} shadows>
                 <OrbitControls makeDefault />
-                <color attach="background" args={["lightblue"]} />
+                <color attach="background" args={isDay ? ["#87ceeb"] : ["#1a1a2e"]} />
                 <directionalLight position={[-2, 5, 2]} castShadow={true} />
                 <ambientLight intensity={1.5} />
                 <Scene isDay={isDay} />
