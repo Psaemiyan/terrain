@@ -25,13 +25,14 @@ export default function Scene({ isDay }) {
     };
 
     const nightColors = {
-        deepWater: new THREE.Color('#001f28'),
-        surfaceWater: new THREE.Color('#3a5a7f'),
-        sand: new THREE.Color('#8c9c9f'),
-        grass: new THREE.Color('#4f9e2a'),
-        rock: new THREE.Color('#4f5254'),
-        snow: new THREE.Color('#8b9ea8'),
+        deepWater: new THREE.Color('#0a1623'),   // Dark navy with a subtle teal tint for depth  
+        surfaceWater: new THREE.Color('#1b3552'), // Deep blue for subtle night reflections  
+        sand: new THREE.Color('#5e6971'),        // Darker but still visible  
+        grass: new THREE.Color('#235022'),       // Dark forest green, natural but not too bright  
+        rock: new THREE.Color('#3a3f4a'),        // Dark gray with a blue undertone for a moody effect  
+        snow: new THREE.Color('#6f7f8d'),        // Cool grayish-blue to blend with the night scene  
     };
+    
 
     const colors = isDay ? dayColors : nightColors;
 
@@ -55,7 +56,7 @@ export default function Scene({ isDay }) {
 
     return (
         <mesh position={[0, -0.1, 0]} castShadow receiveShadow>
-            <planeGeometry ref={planeGeometryRef} args={[40, 40, 500, 500]} />
+            <planeGeometry ref={planeGeometryRef} args={[40, 40, 1000, 1000]} />
             <shaderMaterial
                 ref={materialRef}
                 key={isDay ? 'day' : 'night'} 
